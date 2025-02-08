@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import MateriPage from './pages/MateriPage';
+import VideoPage from './pages/VideoPage';
 
 function App() {
-
   return (
-    <>
- <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    </>
-  )
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/materi" element={<MateriPage />} />
+          <Route path="/video" element={<VideoPage />} />
+        </Routes>
+      </Layout>
+    </Router>
+  );
 }
 
-export default App
+export default App;

@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
       <div className={`fixed left-0 top-0 h-full bg-white shadow-lg transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-20'}`}>
         {/* Logo & Toggle */}
         <div className="flex items-center justify-between p-4 border-b">
-          {sidebarOpen && <span className="text-xl font-bold">Admin Panel</span>}
+          {sidebarOpen && <span className="text-xl font-bold">Admin Giat Cerika</span>}
           <button 
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 rounded-lg hover:bg-gray-100"

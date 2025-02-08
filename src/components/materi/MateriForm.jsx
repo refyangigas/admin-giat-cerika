@@ -50,15 +50,16 @@ const MateriForm = ({ materi, onClose }) => {
       onClose();
     } catch (error) {
       console.error('Error submitting materi:', error);
+      alert('Terjadi kesalahan saat menyimpan materi');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
-      <div className="bg-white rounded-lg w-full max-w-2xl">
-        <div className="flex justify-between items-center p-4 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
+      <div className="bg-white rounded-lg w-full max-w-2xl overflow-y-auto max-h-[90vh]">
+        <div className="flex justify-between items-center p-4 border-b sticky top-0 bg-white">
           <h2 className="text-xl font-semibold">
             {materi ? 'Edit Materi' : 'Tambah Materi'}
           </h2>
@@ -148,7 +149,8 @@ const MateriForm = ({ materi, onClose }) => {
             </div>
           </div>
 
-          <div className="flex justify-end gap-2">
+          {/* Tombol aksi */}
+          <div className="flex justify-end gap-2 sticky bottom-0 bg-white pt-4 border-t">
             <button
               type="button"
               onClick={onClose}
