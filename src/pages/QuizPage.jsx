@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Pencil, Trash2, Clock } from 'lucide-react';
 import { getAllQuizzes, deleteQuiz } from '../services/quizService';
-import QuizForm from '../components/quiz/QuizForm';
+import QuizForm from '../components/quiz/Form';
 
 const QuizPage = () => {
   const [quizzes, setQuizzes] = useState([]);

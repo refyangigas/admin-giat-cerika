@@ -1,13 +1,17 @@
+// components/quiz/BasicInfo.jsx
 import React from 'react';
 import { Clock } from 'lucide-react';
 
-const QuizBasicInfo = ({ data, onChange }) => {
+const BasicInfo = ({ data, onChange }) => {
   const handleTimeChange = (field, value) => {
     const newValue = Math.max(0, parseInt(value) || 0);
+    // Untuk menit dan detik, batasi maksimal 59
+    const maxValue = field !== 'hours' ? 59 : Infinity;
+    
     onChange({
       timeLimit: {
         ...data.timeLimit,
-        [field]: newValue
+        [field]: Math.min(newValue, maxValue)
       }
     });
   };
@@ -17,7 +21,7 @@ const QuizBasicInfo = ({ data, onChange }) => {
       {/* Judul Quiz */}
       <div>
         <label className="block text-sm font-medium mb-2">
-          Judul Quiz
+          Judul Quiz <span className="text-red-500">*</span>
         </label>
         <input
           type="text"
@@ -93,7 +97,7 @@ const QuizBasicInfo = ({ data, onChange }) => {
         {/* Preview Format Waktu */}
         {data.hasTimeLimit && (
           <div className="mt-2 text-sm text-gray-600">
-            Format: {data.timeLimit.hours} jam {data.timeLimit.minutes} menit {data.timeLimit.seconds} detik
+            Format: {`${data.timeLimit.hours} jam ${data.timeLimit.minutes} menit ${data.timeLimit.seconds} detik`}
           </div>
         )}
       </div>
@@ -112,4 +116,4 @@ const QuizBasicInfo = ({ data, onChange }) => {
   );
 };
 
-export default QuizBasicInfo;
+export default BasicInfo;
