@@ -4,7 +4,11 @@ export const getAllQuizzes = () => api.get('/api/quiz');
 
 export const getQuizById = (id) => api.get(`/api/quiz/${id}`);
 
-export const createQuiz = (data) => api.post('/api/quiz', data);
+export const createQuiz = (data) => {
+    // Log data before sending
+    console.log('Sending quiz data:', data);
+    return api.post('/api/quiz', data);
+  };
 
 export const updateQuiz = (id, data) => api.put(`/api/quiz/${id}`, data);
 
