@@ -49,11 +49,24 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await getDashboardStats();
-        setStats(response.data.stats);
-        setRecent(response.data.recent);
+        setLoading(true);
+        const data = await getDashboardStats();
+        setStats(data.stats);
+        setRecent(data.recent);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
+        // Reset state jika terjadi error
+        setStats({
+          totalMateri: 0,
+          totalVideo: 0,
+          totalUser: 0,
+          totalQuiz: 0
+        });
+        setRecent({
+          materi: [],
+          video: [],
+          quiz: []
+        });
       } finally {
         setLoading(false);
       }
