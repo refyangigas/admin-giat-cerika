@@ -19,18 +19,19 @@ const VideoForm = ({ video, onClose }) => {
     setError('');
   };
 
-  // Validasi URL YouTube
+  // Fungsi untuk validasi URL YouTube
   const isValidYoutubeUrl = (url) => {
     try {
       const urlObj = new URL(url);
-      return urlObj.hostname === 'www.youtube.com' && 
-             urlObj.pathname === '/watch' &&
-             urlObj.searchParams.has('v');
+      const isYoutube = urlObj.hostname === 'www.youtube.com' || urlObj.hostname === 'youtube.com';
+      const hasVideoId = urlObj.searchParams.get('v');
+      return isYoutube && hasVideoId;
     } catch {
       return false;
     }
   };
 
+  // Fungsi untuk mendapatkan ID video dari URL YouTube
   const getVideoId = (url) => {
     try {
       const urlObj = new URL(url);
@@ -44,6 +45,12 @@ const VideoForm = ({ video, onClose }) => {
     e.preventDefault();
     setError('');
 
+    // Validasi judul
+    if (!formData.judul.trim()) {
+      setError('Judul video tidak boleh kosong');
+      return;
+    }
+
     // Validasi URL
     if (!isValidYoutubeUrl(formData.youtube_url)) {
       setError('URL YouTube tidak valid. Gunakan format: https://www.youtube.com/watch?v=...');
@@ -55,12 +62,16 @@ const VideoForm = ({ video, onClose }) => {
       if (video) {
         await updateVideo(video._id, formData);
       } else {
-        await createVideo(formData);
+        const response = await createVideo(formData);
+        console.log('Response:', response);
       }
       onClose();
     } catch (error) {
-      console.error('Error submitting video:', error);
-      setError(error.response?.data?.message || 'Terjadi kesalahan saat menyimpan video');
+      console.error('Error detail:', error.response || error);
+      setError(
+        error.response?.data?.message || 
+        'Terjadi kesalahan saat menyimpan video. Silakan cek console untuk detail.'
+      );
     } finally {
       setLoading(false);
     }
@@ -78,6 +89,7 @@ const VideoForm = ({ video, onClose }) => {
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-lg"
+            type="button"
           >
             <X size={20} />
           </button>
