@@ -9,7 +9,7 @@ const DashboardCard = ({ title, value, icon: Icon, trend }) => (
       <CardTitle className="text-sm font-medium text-gray-600">{title}</CardTitle>
       <Icon className="w-4 h-4 text-[#497D74]" />
     </CardHeader>
-    <CardContent>
+    <CardContent className="flex flex-col items-center justify-center text-center">
       <div className="text-2xl font-bold text-[#497D74]">{value}</div>
       {trend && (
         <p className="text-xs text-gray-600">
@@ -55,7 +55,6 @@ const Dashboard = () => {
         setRecent(data.recent);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
-        // Reset state jika terjadi error
         setStats({
           totalMateri: 0,
           totalVideo: 0,
