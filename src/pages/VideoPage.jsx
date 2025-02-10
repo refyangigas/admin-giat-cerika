@@ -73,7 +73,7 @@ const VideoPage = () => {
         <h1 className="text-2xl font-bold">Manajemen Video</h1>
         <button
           onClick={handleAdd}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-600"
+          className="bg-[#497D74] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#5c8f86]"
         >
           <Plus size={20} />
           Tambah Video

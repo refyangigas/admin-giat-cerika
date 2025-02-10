@@ -52,23 +52,26 @@ const MateriPage = () => {
   };
 
   if (loading) {
-    return <div className="flex justify-center items-center h-64">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#497D74]"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-6 bg-[#FFF8DC] min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Manajemen Materi</h1>
+        <h1 className="text-2xl font-bold text-[#497D74]">Manajemen Materi</h1>
         <button
           onClick={handleAdd}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-600"
+          className="bg-[#497D74] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#5c8f86]"
         >
           <Plus size={20} />
           Tambah Materi
         </button>
       </div>
 
-      {/* List Materi */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {materis.map((materi) => (
           <div
@@ -83,18 +86,18 @@ const MateriPage = () => {
               />
             )}
             <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">{materi.judul}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-[#497D74]">{materi.judul}</h3>
               <p className="text-gray-600 mb-4 line-clamp-3">{materi.konten}</p>
               <div className="flex justify-end gap-2">
                 <button
                   onClick={() => handleEdit(materi)}
-                  className="p-2 text-blue-500 hover:bg-blue-50 rounded-lg"
+                  className="p-2 text-[#497D74] hover:bg-[#497D74] hover:text-white rounded-lg transition-colors"
                 >
                   <Pencil size={20} />
                 </button>
                 <button
                   onClick={() => handleDelete(materi._id)}
-                  className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
+                  className="p-2 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
                 >
                   <Trash2 size={20} />
                 </button>
@@ -104,7 +107,6 @@ const MateriPage = () => {
         ))}
       </div>
 
-      {/* Form Modal */}
       {isFormOpen && (
         <MateriForm
           materi={selectedMateri}

@@ -1,9 +1,6 @@
-// pages/QuizPage.jsx
 import { useState, useEffect } from 'react';
-import Layout from '../components/layout/Layout';
 import QuizForm from '../components/quiz/QuizForm';
 import QuizPreview from '../components/quiz/QuizPreview'; 
-import QuizList from '../components/quiz/QuizList'; 
 import { getAllQuizzes, deleteQuiz } from '../services/quizService';
 import { Plus, Pencil, Trash2, X, Eye } from 'lucide-react';
 
@@ -51,7 +48,7 @@ const QuizPage = () => {
     if (window.confirm('Apakah Anda yakin ingin menghapus quiz ini?')) {
       try {
         await deleteQuiz(id);
-        await loadQuizzes(); // Reload data setelah hapus
+        await loadQuizzes();
       } catch (err) {
         console.error('Error deleting quiz:', err);
         setError('Gagal menghapus quiz');
@@ -61,17 +58,17 @@ const QuizPage = () => {
 
   const handleQuizSubmit = async () => {
     setIsModalOpen(false);
-    await loadQuizzes(); // Reload data setelah tambah/edit
+    await loadQuizzes();
   };
 
   return (
-    <Layout>
+    <div className="p-6 bg-[#FFF8DC] min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Manajemen Quiz</h1>
+        <h1 className="text-2xl font-bold text-[#497D74]">Manajemen Quiz</h1>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          className="flex items-center gap-2 bg-[#497D74] text-white px-4 py-2 rounded-lg hover:bg-[#5c8f86]"
         >
           <Plus size={20} />
           <span>Tambah Quiz</span>
@@ -85,16 +82,16 @@ const QuizPage = () => {
         </div>
       )}
 
-      {/* Quiz List dengan tambahan tombol edit dan preview */}
+      {/* Quiz List */}
       {loading ? (
         <div className="flex justify-center items-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#497D74]"></div>
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {quizzes.map((quiz) => (
             <div key={quiz._id} className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-2">{quiz.title}</h3>
+              <h3 className="text-xl font-bold mb-2 text-[#497D74]">{quiz.title}</h3>
               <p className="text-gray-600 mb-4">{quiz.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-500">
@@ -103,21 +100,21 @@ const QuizPage = () => {
                 <div className="flex gap-2">
                   <button 
                     onClick={() => handlePreviewQuiz(quiz)}
-                    className="p-2 text-gray-500 hover:bg-gray-50 rounded"
+                    className="p-2 text-[#497D74] hover:bg-[#497D74] hover:text-white rounded transition-colors"
                     title="Preview"
                   >
                     <Eye size={18} />
                   </button>
                   <button 
                     onClick={() => handleEditQuiz(quiz)}
-                    className="p-2 text-blue-500 hover:bg-blue-50 rounded"
+                    className="p-2 text-[#497D74] hover:bg-[#497D74] hover:text-white rounded transition-colors"
                     title="Edit"
                   >
                     <Pencil size={18} />
                   </button>
                   <button 
                     onClick={() => handleDeleteQuiz(quiz._id)}
-                    className="p-2 text-red-500 hover:bg-red-50 rounded"
+                    className="p-2 text-red-500 hover:bg-red-500 hover:text-white rounded transition-colors"
                     title="Hapus"
                   >
                     <Trash2 size={18} />
@@ -134,7 +131,7 @@ const QuizPage = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-xl font-bold">
+              <h2 className="text-xl font-bold text-[#497D74]">
                 {selectedQuiz ? 'Edit Quiz' : 'Tambah Quiz Baru'}
               </h2>
               <button
@@ -154,12 +151,12 @@ const QuizPage = () => {
         </div>
       )}
 
-       {/* Preview Modal */}
-       {previewQuiz && (
+      {/* Preview Modal */}
+      {previewQuiz && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-xl font-bold">Preview Quiz</h2>
+              <h2 className="text-xl font-bold text-[#497D74]">Preview Quiz</h2>
               <button
                 onClick={() => setPreviewQuiz(null)}
                 className="text-gray-500 hover:text-gray-700"
@@ -173,8 +170,7 @@ const QuizPage = () => {
           </div>
         </div>
       )}
-
-    </Layout>
+    </div>
   );
 };
 
