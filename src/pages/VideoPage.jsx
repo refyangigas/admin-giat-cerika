@@ -12,7 +12,7 @@ const VideoPage = () => {
   const fetchVideos = async () => {
     try {
       const response = await getAllVideos();
-      setVideos(response.data);
+      setVideos(Array.isArray(response) ? response : response.data.data || []);
     } catch (error) {
       console.error('Error fetching videos:', error);
     } finally {

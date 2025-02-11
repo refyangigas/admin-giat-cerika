@@ -20,7 +20,7 @@ const QuizPage = () => {
     try {
       setLoading(true);
       const response = await getAllQuizzes();
-      setQuizzes(response.data);
+      setQuizzes(response.data.data); // Ambil array quiz dari response.data.data
       setError(null);
     } catch (err) {
       setError('Gagal memuat data quiz');
