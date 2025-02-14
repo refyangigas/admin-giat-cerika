@@ -80,7 +80,7 @@ const MateriPage = () => {
           >
             {materi.thumbnail && (
               <img
-                src={`http://localhost:5000${materi.thumbnail}`}
+              src={materi.thumbnail} 
                 alt={materi.judul}
                 className="w-full h-48 object-cover"
               />

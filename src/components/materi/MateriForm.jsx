@@ -8,7 +8,9 @@ const MateriForm = ({ materi, onClose }) => {
     konten: materi?.konten || '',
     thumbnail: null
   });
-  const [preview, setPreview] = useState(materi?.thumbnail ? `http://localhost:5000${materi.thumbnail}` : null);
+  
+  // Menggunakan URL Cloudinary langsung jika ada, atau null untuk materi baru
+  const [preview, setPreview] = useState(materi?.thumbnail || null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -26,6 +28,7 @@ const MateriForm = ({ materi, onClose }) => {
         ...prev,
         thumbnail: file
       }));
+      // Membuat preview URL lokal untuk file yang baru dipilih
       setPreview(URL.createObjectURL(file));
     }
   };
