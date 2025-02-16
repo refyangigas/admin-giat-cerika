@@ -1,6 +1,7 @@
 // src/components/quiz/QuizAttemptDetail.jsx
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import { Check, X } from 'lucide-react';
 
 const QuizAttemptDetail = ({ attempt, isOpen, onClose }) => {
   if (!isOpen || !attempt) return null;
@@ -61,11 +62,6 @@ const QuizAttemptDetail = ({ attempt, isOpen, onClose }) => {
                         {answer.isCorrect ? '✓' : '✕'}
                       </span>
                       <span className="font-medium">Soal {index + 1}</span>
-                    </div>
-                    <div className="ml-8">
-                      <p className="text-gray-600">
-                        <strong>Jawaban:</strong> {answer.selectedOption || 'Tidak ada jawaban'}
-                      </p>
                     </div>
                   </CardContent>
                 </Card>

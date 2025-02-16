@@ -58,7 +58,7 @@ const QuizAttemptsPage = () => {
             </CardContent>
             <CardFooter>
               <button 
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                className="bg-[#497D74] hover:bg-[#5c8f86] text-white px-4 py-2 rounded transition-colors"
                 onClick={() => setSelectedAttempt(attempt)}
               >
                 Lihat Detail
