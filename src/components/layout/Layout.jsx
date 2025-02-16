@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Video, FileQuestion } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Video, FileQuestion, ClipboardList } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const location = useLocation();
