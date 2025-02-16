@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import MateriPage from './pages/MateriPage';
 import VideoPage from './pages/VideoPage';
 import QuizPage from './pages/QuizPage';
+import QuizAttemptsPage from './pages/QuizAttemptsPage'; 
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/materi" element={<MateriPage />} />
           <Route path="/video" element={<VideoPage />} />
           <Route path="/quiz" element={<QuizPage />} />
+          <Route path="/quiz-attempts" element={<QuizAttemptsPage />} /> 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

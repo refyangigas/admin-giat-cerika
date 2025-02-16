@@ -30,6 +30,11 @@ const Layout = ({ children }) => {
       name: 'Quiz', 
       icon: FileQuestion 
     },
+    {
+      path: '/quiz-attempts',
+      name: 'Hasil Quiz',
+      icon: ClipboardList
+    }
   ];
 
   return (
